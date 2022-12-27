@@ -7,7 +7,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func InsertAndDelete(db sql.DB, sql string, args ...string) bool {
+func InsertAndDelete(db *sql.DB, sql string, args ...string) bool {
 	dbErr := db.Ping()
 	if dbErr != nil {
 		println("mysql连接失败，错误日志为：", dbErr.Error())
@@ -31,7 +31,7 @@ func InsertAndDelete(db sql.DB, sql string, args ...string) bool {
 }
 
 // QueryOne 查询一条记录
-func QueryOne(db sql.DB, sql string, args ...string) bool {
+func QueryOne(db *sql.DB, sql string, args ...string) bool {
 	// 执行
 	row := db.QueryRow(sql, args)
 	// 声明变量接受扫描出来的数据
