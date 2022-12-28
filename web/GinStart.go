@@ -31,6 +31,7 @@ func LoginController() {
 
 	operGroup := r.Group("/oper")
 	{
+		operGroup.POST("/operLogin", operLogin)
 		operGroup.POST("/giveOrder", giveOrder)
 		operGroup.POST("/updateOrder", updateOrder)
 		operGroup.POST("/selectOrderByTel", selectOrderByTel)
