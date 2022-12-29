@@ -8,9 +8,9 @@ import (
 )
 
 func operLogin(c *gin.Context) {
-	json := make(map[string]interface{}) //注意该结构接受的内容
-	c.BindJSON(&json)
-	aid, status, msg := service.OLogin(json)
+	accout := c.PostForm("accout")
+	password := c.PostForm("password")
+	aid, status, msg := service.OLogin(accout, password)
 	c.JSON(http.StatusOK, gin.H{
 		"oid":    aid,
 		"status": status,
@@ -19,9 +19,9 @@ func operLogin(c *gin.Context) {
 }
 
 func giveOrder(c *gin.Context) {
-	json := make(map[string]interface{}) //注意该结构接受的内容
-	c.BindJSON(&json)
-	o, status, msg := service.OGiveOrder(json)
+	deltel := c.PostForm("deltel")
+	oid := c.PostForm("oid")
+	o, status, msg := service.OGiveOrder(deltel, oid)
 	c.JSON(http.StatusOK, gin.H{
 		"order":  o,
 		"status": status,
@@ -30,11 +30,11 @@ func giveOrder(c *gin.Context) {
 }
 
 func updateOrder(c *gin.Context) {
-	json := make(map[string]interface{}) //注意该结构接受的内容
-	c.BindJSON(&json)
-	status, msg := service.OUpdateOrder(json)
+	status := c.PostForm("status")
+	oid := c.PostForm("oid")
+	statuss, msg := service.OUpdateOrder(status, oid)
 	c.JSON(http.StatusOK, gin.H{
-		"status": status,
+		"status": statuss,
 		"msg":    msg,
 	})
 }
@@ -74,9 +74,13 @@ func selectAllOrder(c *gin.Context) {
 }
 
 func addMeal(c *gin.Context) {
-	json := make(map[string]interface{}) //注意该结构接受的内容
-	c.BindJSON(&json)
-	status, msg := service.OAddMeal(json)
+	var1 := c.PostForm("type")
+	var2 := c.PostForm("name")
+	var3 := c.PostForm("sum")
+	var4 := c.PostForm("intro")
+	var5 := c.PostForm("teste")
+	var6 := c.PostForm("img")
+	status, msg := service.OAddMeal(var1, var2, var3, var4, var5, var6)
 	c.JSON(http.StatusOK, gin.H{
 		"status": status,
 		"msg":    msg,

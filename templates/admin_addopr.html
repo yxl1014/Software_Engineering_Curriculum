@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>添加管理员</title>
+    <link rel="stylesheet" type="text/css" href="../css/change.css">
+    <link rel="stylesheet" href="../css/UpdateStyle.css"/>
+    <link rel="stylesheet" href="../css/ss.css"/>
+    <script type="text/javascript" src="../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../script/list.js"></script>
+    <script type="text/javascript" src="../script/requet/admin.js"></script>
+    <link href="../css/mydiv.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/iconfont.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mydiv.css"/>
+
+    <script>
+        window.onload = function () {
+            //获取元素（两种方式都可以）
+            var input1 = document.getElementById('old_password')
+            var imgs1 = document.getElementById('eyes1');
+            //下面是一个判断每次点击的效果
+            var flag1 = 0;
+            imgs1.onclick = function () {
+                if (flag1 === 0) {
+                    input1.type = 'text';
+                    imgs1.src = 'img/3.png';//睁眼图
+                    flag1 = 1;
+                } else {
+                    input1.type = 'password';
+                    imgs1.src = 'img/2.png';//闭眼图
+                    flag1 = 0;
+                }
+            }
+            var input2 = document.getElementById('new_password')
+            var imgs2 = document.getElementById('eyes2');
+            //下面是一个判断每次点击的效果
+            var flag2 = 0;
+            imgs2.onclick = function () {
+                if (flag2 === 0) {
+                    input2.type = 'text';
+                    imgs2.src = 'img/3.png';//睁眼图
+                    flag2 = 1;
+                } else {
+                    input2.type = 'password';
+                    imgs2.src = 'img/2.png';//闭眼图
+                    flag2 = 0;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <a href="./index.html" class="layui-hide-xs"><div class="layui-logo"><h4>管理员后台</h4></div></a>
+        <a href="javascript:;" class="layui-hide-xs"><div class="fsSwitchMenu"><i class="fa fa-outdent"></i></div></a>
+
+        <!-- 顶部菜单 -->
+        <ul class="layui-nav layui-layout-left fsTopMenu" id="fsTopMenu" lay-filter="fsTopMenu">
+            <span class="layui-nav-bar" style="width: 0px; left: 0px; opacity: 0;"></span><li class="layui-nav-item layui-this" datapid="1"><a href="javascript:;"><i class="fa fa-cog"></i></a></li></ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide-xs">
+                <a id="demoName" href="javascript:;">
+                </a>
+                <dl class="layui-nav-child layui-anim layui-anim-upbit">
+                    <dd><a href="javascript:;">基本资料</a></dd>
+                    <dd><a href="javascript:;">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-hide-xs"><a href="login.html"><i class="fa fa-sign-out"></i> 退出</a></li>
+            <span class="layui-nav-bar" style="left: 166.35px; top: 55px; width: 0px; opacity: 0;"></span></ul>
+    </div>
+</div>
+<div class="box">
+    <h1>Admin_PingTai</h1>
+    <h1>         </h1>
+    <h2></h2>
+    <div class="middle">
+        <ul class="menu">
+            <li class="item">
+                <a href="adminpage.html" class="btn"><i class="iconfont icon-logout"></i>系统首页</a>
+            </li>
+            <li class="item" id="profile">
+                <a href="admin_ordhadler.html" class="btn"><i class="iconfont icon-user"></i>订单操作</a>
+            </li>
+            <li class="item" id="messages">
+                <a href="admin_operhander.html" class="btn"><i class="iconfont icon-mail"></i>操作员管理</a>
+            </li>
+            <li class="item" id="opertor">
+                <a href="admin_delop.html" class="btn"><i class="iconfont icon-mail"></i>删除操作员</a>
+            </li>
+
+            <li class="item" id="a">
+                <a href="admin_addopr.html" class="btn"><i class="iconfont icon-mail"></i>添加操作员</a>
+            </li>
+            <li class="item" id="b">
+                <a href="admin_add.html" class="btn"><i class="iconfont icon-mail"></i>添加管理员</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="rg_layout">
+    <div class="rg_left">
+        <p class="p_reg">注册操作员</p>
+        <p class="p_en">change password</p>
+    </div>
+
+    <div class="rg_center">
+        <div class="re_form">
+            <form action="#" method="post" >
+                <table>
+
+                    <tr>
+                        <td class="td_left"><label for="phone1">账号</label></td>
+                        <td class="td_right"><input type="text" name="phone1" id="phone1" placeholder="请输入您的账号"><label for="old_password"><img class="img" src="../img/1.png" alt="" id="ee"></label></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="old_password">密码</label></td>
+                        <td class="td_right"><input type="password" name="name" id="old_password" placeholder="请输入密码"><label for="old_password"><img class="img" src="../img/2.png" alt="" id="eyes1"></label></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="new_password">重新输入</label></td>
+                        <td class="td_right"><input type="password" name="name" id="new_password" placeholder="请重新输入"><label for="new_password"><img class="img" src="../img/2.png" alt="" id="eyes2"></label></td>
+                    </tr>
+                    <tr>
+                        <td  colspan="2" align="center"><input type="button" id="btn_add"  value="确认"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>
+

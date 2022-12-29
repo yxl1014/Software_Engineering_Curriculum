@@ -77,6 +77,21 @@ func Query(db *sql.DB, sql string, args ...any) (bool, int) {
 	return true, aid
 }
 
+func QueryAdmin(db *sql.DB, sql string, args ...any) (bool, int) {
+	// 执行
+	row := db.QueryRow(sql, args...)
+	// 声明变量接受扫描出来的数据
+	var aid int
+	var accout string
+	var password string
+	err := row.Scan(&aid, &accout, &password)
+	if err != nil {
+		fmt.Println("查询失败:", err)
+		return false, -1
+	}
+	return true, aid
+}
+
 // Query 查询一条记录
 func QueryOrdFrom(db *sql.DB, sql string, args ...any) (bool, *OrdFrom) {
 	// 执行
@@ -130,8 +145,40 @@ func QueryOpertor(db *sql.DB, sql string, args ...any) (bool, int, bool) {
 	return true, oid, weight
 }
 
+func QueryAllOpertor(db *sql.DB) []*Opertor {
+	// 执行
+	rows, _ := db.Query("select * from opertor")
+	// 创建User 切片
+	var users []*Opertor
+	for rows.Next() {
+		// 声明变量接受扫描出来的数据
+		var oid int
+		var accout string
+		var password string
+		var weight bool
+		err := rows.Scan(&oid, &accout, &password, &weight)
+
+		if err != nil {
+			fmt.Println("查询失败:", err)
+			return nil
+		}
+		m := &Opertor{
+			Oid:      oid,
+			Accout:   accout,
+			Password: password,
+			Weight:   weight,
+		}
+
+		users = append(users, m)
+	}
+
+	return users
+}
+
 // QueryAll 查询全部记录
 func QueryAllMeals(db *sql.DB) ([]*Meal, error) {
+
+	//maps := make(map[string]interface{})
 	sql := "select * from meal"
 	rows, err := db.Query(sql)
 	if err != nil {

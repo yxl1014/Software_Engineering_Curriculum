@@ -1,0 +1,105 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>jQuery外卖点餐购物车代码 - 开优网络</title>
+
+<link rel="stylesheet" type="text/css" href="../css/aui.css">
+<link rel="stylesheet" href="../css/classify.css">
+<style>
+	html,body{height: 100%;max-width: 640px;margin:0 auto;}
+	.aui-bar-nav{border:none;background: #f5f5f5;}
+	.main{height: calc(100% - 4.5rem);}
+	
+	#tab1-con1{padding-bottom: 3rem;}
+	#tab1-con1,#tab1-con2{height: 100%;}
+	.aui-tab{border-bottom: solid 1px #eee;background: #f5f5f5;height: 2.25rem;}
+	.aui-tab-item{font-size: .75rem;color: #666;width: 25%;}
+	.aui-tab-item.aui-active{border:none;color: #000;position: relative;}
+	.aui-tab-item.aui-active:after{position: absolute;left: 40%;width: 20%;height: 2px;background: #00ae66;content: '';bottom:0;}
+</style>
+
+</head>
+<body>
+
+<header class="aui-bar aui-bar-nav">
+	<a class="aui-pull-left aui-btn">
+		<span class="aui-iconfont aui-icon-left" id="back_main"></span>
+	</a>
+	<div class="aui-title">商品</div>
+	<div class="aui-pull-right"></div>
+</header>
+<div class="aui-tab" id="tab">
+	<div class="aui-tab-item aui-active">点菜</div>
+	<div class="aui-tab-item">商家</div>
+</div>
+<div class="main">
+	<div class="aui-item" id="tab1-con1">
+		<div class="left-menu" id="left">
+			<ul id="types">
+			</ul>
+		</div>
+		<div id="muns" class="con">
+		</div>
+		<div class="up1"></div>
+		<div class="shopcart-list fold-transition">
+			<div class="list-header">
+				<h1 class="title">购物车</h1>
+				<span class="empty">清空所有</span>
+			</div>
+			<div class="list-content">
+				<ul></ul>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="left">
+				<div class="count_num"><span id="totalcountshow">0</span></div>
+				<span id="cartN" class="nowrap">总计：<span id="totalpriceshow">0</span>元</span> 
+			</div>
+			<div class="right">
+				<a id="btnselect" class="xhlbtn disable">去结算</a>
+			</div>
+		</div>
+	</div>
+	<div class="aui-item aui-hide" id="tab1-con2">
+		2
+	</div>
+</div>
+
+<script type="text/javascript" src="../script/api.js" ></script>
+<script src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/add.js"></script>
+<script type="text/javascript" src="../script/aui-tab.js" ></script>
+<script type="text/javascript">
+
+    apiready = function() {
+        api.parseTapmode();
+    }
+    var tab = new auiTab({
+        element: document.getElementById("tab"),
+
+    }, function(ret) {
+        if (ret) {
+            //定义获取对象的所有兄弟节点的函数，
+            function siblings(elm) {
+                var a = [];
+                var p = elm.parentNode.children;
+                for (var i = 0, pl = p.length; i < pl; i++) {
+                    if (p[i] !== elm) a.push(p[i]);
+                }
+                return a;
+            }
+            var index = ret.index;
+            var activeC = document.getElementById("tab1-con" + index);
+            activeC.className = "";
+            for (var i = 0; i < siblings(activeC).length; i++) {
+                siblings(activeC)[i].className = "aui-hide";
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
+

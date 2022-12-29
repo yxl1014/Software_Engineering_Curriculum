@@ -2,12 +2,20 @@ package web
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 func LoginController() {
 	// 创建一个默认的路由引擎
 	r := gin.Default()
+
+	r.LoadHTMLGlob("./templates/*.html")
 	// 配置路由
+	r.StaticFS("/image", http.Dir("./image"))
+	r.StaticFS("/img", http.Dir("./img"))
+	r.StaticFS("/css", http.Dir("./css"))
+	r.StaticFS("/script", http.Dir("./script"))
+	r.StaticFS("/templates", http.Dir("./templates"))
 
 	adminGroup := r.Group("/admin")
 	{
@@ -18,6 +26,8 @@ func LoginController() {
 		adminGroup.POST("/updateUserPwd", adminUpdateUserPwd)
 		adminGroup.POST("/updateStatus", adminUpdateStatus)
 		adminGroup.POST("/getOrderOk", adminGetOrderOk)
+		adminGroup.POST("/selectAllOpertor", adminSelectAllOpertor)
+		adminGroup.POST("/selectAllOrder", selectAllOrder)
 	}
 
 	userGroup := r.Group("/user")
@@ -29,9 +39,9 @@ func LoginController() {
 		userGroup.POST("/speakOrder", speakOrder)
 	}
 
-	operGroup := r.Group("/oper")
+	operGroup := r.Group("/opertor")
 	{
-		operGroup.POST("/operLogin", operLogin)
+		operGroup.POST("/login", operLogin)
 		operGroup.POST("/giveOrder", giveOrder)
 		operGroup.POST("/updateOrder", updateOrder)
 		operGroup.POST("/selectOrderByTel", selectOrderByTel)
@@ -41,7 +51,9 @@ func LoginController() {
 		operGroup.POST("/addMeal", addMeal)
 	}
 
-	r.GET("/", test_)
+	r.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "login.html", nil)
+	})
 	r.POST("/test", test__)
 	r.POST("/test1", test___)
 	// 启动 HTTP 服务，默认在 0.0.0.0:8080 启动服务

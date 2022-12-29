@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 查看表单专用 -->
+    <meta charset="utf-8">
+    <title>查看入库单</title>
+    <link rel="stylesheet" href="../css/UpdateStyle.css"/>
+    <link rel="stylesheet" href="../css/ss.css"/>
+    <script src="../script/list.js"></script>
+    <script type="text/javascript" src="../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../script/requet/admin.js"></script>
+    <script type="text/javascript" src="../script/requet/admin_load_ord.js"></script>
+    <script type="text/javascript" src="../script/echarts.js"></script>
+    <script type="text/javascript" src="../script/echarts-box.js"></script>
+    <script type="text/javascript" src="../script/echarts-option.js"></script>
+    <script type="text/javascript" src="../script/echarts.min.js"></script>
+    <link rel="stylesheet" href="../css/iconfont.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/mydiv.css"/>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <a href="./index.html" class="layui-hide-xs"><div class="layui-logo"><h4>管理员后台</h4></div></a>
+        <a href="javascript:;" class="layui-hide-xs"><div class="fsSwitchMenu"><i class="fa fa-outdent"></i></div></a>
+
+        <!-- 顶部菜单 -->
+        <ul class="layui-nav layui-layout-left fsTopMenu" id="fsTopMenu" lay-filter="fsTopMenu">
+            <span class="layui-nav-bar" style="width: 0px; left: 0px; opacity: 0;"></span><li class="layui-nav-item layui-this" datapid="1"><a href="javascript:;"><i class="fa fa-cog"></i></a></li></ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide-xs">
+                <a id="demoName" href="javascript:;">
+                </a>
+                <dl class="layui-nav-child layui-anim layui-anim-upbit">
+                    <dd><a href="javascript:;">基本资料</a></dd>
+                    <dd><a href="javascript:;">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-hide-xs"><a href="login.html"><i class="fa fa-sign-out"></i> 退出</a></li>
+            <span class="layui-nav-bar" style="left: 166.35px; top: 55px; width: 0px; opacity: 0;"></span></ul>
+    </div>
+</div>
+
+
+
+
+
+<div class="box">
+    <h1>Admin_PingTai</h1>
+    <h1>         </h1>
+    <h2></h2>
+    <div class="middle">
+        <ul class="menu">
+            <li class="item">
+                <a href="adminpage.html" class="btn"><i class="iconfont icon-logout"></i>系统首页</a>
+            </li>
+            <li class="item" id="profile">
+                <a href="admin_ordhadler.html" class="btn"><i class="iconfont icon-user"></i>订单操作</a>
+            </li>
+            <li class="item" id="messages">
+                <a href="admin_operhander.html" class="btn"><i class="iconfont icon-mail"></i>操作员管理</a>
+            </li>
+            <li class="item" id="opertor">
+                <a href="admin_delop.html" class="btn"><i class="iconfont icon-mail"></i>删除操作员</a>
+            </li>
+
+            <li class="item" id="a">
+                <a href="admin_addopr.html" class="btn"><i class="iconfont icon-mail"></i>添加操作员</a>
+            </li>
+            <li class="item" id="b">
+                <a href="admin_add.html" class="btn"><i class="iconfont icon-mail"></i>添加管理员</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="loadpage">
+    <div class="load-v1">
+        <div class="load-v1-1">
+            <form class="layui-form" id="query_form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-mid">id：</label>
+                        <div class="layui-input-inline" style="width: 100px;">
+                            <input id="Id" type="text" name="id" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-mid">名称：</label>
+                        <div class="layui-input-inline" style="width: 100px;">
+                            <input id="Name" type="text" name="name" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-mid">时间：</label>
+                        <div class="layui-input-inline" style="">
+                            <input id="Time" type="text" name="createDate" autocomplete="off" class="layui-input fsDate" daterange="1" placeholder=" - ">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <button id="screah" class="layui-btn" type="button" function="query">查询</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <HR align=center width=100% top = 90% color=#000000 SIZE=2>
+        </div>
+
+
+    </div>
+
+    <div class="load-v2">
+        <div class="subbox">
+            <table id="in_table">
+                <thead>
+                <tr>
+                    <th>订单号</th>
+                    <th>订餐人</th>
+                    <th>外卖员</th>
+                    <th>处理状态</th>
+                    <th>创建时间</th>
+                    <th>价钱</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

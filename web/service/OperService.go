@@ -2,10 +2,9 @@ package service
 
 import "Software_Engineering_Curriculum/mysql"
 
-func OLogin(json map[string]interface{}) (int, bool, string) {
-	accout := json["accout"]
-	password := json["password"]
-	if accout == nil || password == nil || accout == "" || password == "" {
+func OLogin(accout string, password string) (int, bool, string) {
+
+	if accout == "" || password == "" {
 		return -1, false, "输入为空，请重新输入"
 	}
 	o := mysql.QueryOneOpertor(db, "select * from opertor where accout = ? and password = ?", accout, password)
@@ -22,9 +21,7 @@ func OLogin(json map[string]interface{}) (int, bool, string) {
 	}
 }
 
-func OGiveOrder(json map[string]interface{}) (*mysql.OrdFrom, bool, string) {
-	deltel := json["deltel"]
-	oid := json["oid"]
+func OGiveOrder(deltel any, oid any) (*mysql.OrdFrom, bool, string) {
 	if deltel == nil || oid == nil || deltel == "" || oid == "" {
 		return nil, false, "输入为空，请重新输入"
 	}
@@ -44,9 +41,7 @@ func OGiveOrder(json map[string]interface{}) (*mysql.OrdFrom, bool, string) {
 	}
 }
 
-func OUpdateOrder(json map[string]interface{}) (bool, string) {
-	status := json["status"]
-	oid := json["oid"]
+func OUpdateOrder(status any, oid any) (bool, string) {
 	if status == nil || oid == nil || status == "" || oid == "" {
 		return false, "输入为空，请重新输入"
 	}
@@ -65,13 +60,7 @@ func OUpdateOrder(json map[string]interface{}) (bool, string) {
 	}
 }
 
-func OAddMeal(json map[string]interface{}) (bool, string) {
-	var1 := json["type"]
-	var2 := json["name"]
-	var3 := json["sum"]
-	var4 := json["intro"]
-	var5 := json["teste"]
-	var6 := json["img"]
+func OAddMeal(var1 any, var2 any, var3 any, var4 any, var5 any, var6 any) (bool, string) {
 	if var1 == nil || var2 == nil || var3 == nil || var4 == nil || var5 == nil || var6 == nil ||
 		var1 == "" || var2 == "" || var3 == "" || var4 == "" || var5 == "" || var6 == "" {
 		return false, "输入为空，请重新输入"

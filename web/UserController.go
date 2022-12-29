@@ -13,9 +13,9 @@ func getAllMeal(c *gin.Context) {
 }
 
 func order(c *gin.Context) {
-	json := make(map[string]interface{}) //注意该结构接受的内容
-	c.BindJSON(&json)
-	status, msg := service.UOrder(json)
+	tel := c.PostForm("tel")
+	meals := c.PostForm("meals")
+	status, msg := service.UOrder(tel, meals)
 	c.JSON(http.StatusOK, gin.H{
 		"status": status,
 		"msg":    msg,
@@ -23,9 +23,9 @@ func order(c *gin.Context) {
 }
 
 func delOrder(c *gin.Context) {
-	json := make(map[string]interface{}) //注意该结构接受的内容
-	c.BindJSON(&json)
-	status, msg := service.UDelOrder(json)
+	tel := c.PostForm("tel")
+	oid := c.PostForm("oid")
+	status, msg := service.UDelOrder(tel, oid)
 	c.JSON(http.StatusOK, gin.H{
 		"status": status,
 		"msg":    msg,
@@ -33,9 +33,9 @@ func delOrder(c *gin.Context) {
 }
 
 func selectOrder(c *gin.Context) {
-	json := make(map[string]interface{}) //注意该结构接受的内容
-	c.BindJSON(&json)
-	status, msg, str := service.USelectOrder(json)
+	tel := c.PostForm("tel")
+	oid := c.PostForm("oid")
+	status, msg, str := service.USelectOrder(tel, oid)
 	c.JSON(http.StatusOK, gin.H{
 		"status":      status,
 		"msg":         msg,
@@ -44,9 +44,10 @@ func selectOrder(c *gin.Context) {
 }
 
 func speakOrder(c *gin.Context) {
-	json := make(map[string]interface{}) //注意该结构接受的内容
-	c.BindJSON(&json)
-	status, msg := service.USpeakOrder(json)
+	tel := c.PostForm("tel")
+	oid := c.PostForm("oid")
+	msg1 := c.PostForm("msg")
+	status, msg := service.USpeakOrder(tel, oid, msg1)
 	c.JSON(http.StatusOK, gin.H{
 		"status": status,
 		"msg":    msg,

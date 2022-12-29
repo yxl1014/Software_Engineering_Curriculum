@@ -15,13 +15,13 @@ var CHARS = []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
 	"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
 	"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
 
-func ALogin(json map[string]interface{}) (int, bool, string) {
-	accout := json["accout"]
-	password := json["password"]
-	if accout == nil || password == nil || accout == "" || password == "" {
+func ALogin(accout string, password string) (int, bool, string) {
+	//accout := json["accout"]
+	//password := json["password"]
+	if /*accout == nil || password == nil || */ accout == "" || password == "" {
 		return -1, false, "输入为空，请重新输入"
 	}
-	ok, aid := mysql.Query(db, "select * from admin where accout = ? and password = ?", accout, password)
+	ok, aid := mysql.QueryAdmin(db, "select * from admin where accout = ? and password = ?", accout, password)
 
 	if ok {
 		return aid, true, "登录成功"
@@ -30,13 +30,13 @@ func ALogin(json map[string]interface{}) (int, bool, string) {
 	}
 }
 
-func AAddAdmin(json map[string]interface{}) (bool, string) {
-	accout := json["accout"]
-	password := json["password"]
-	if accout == nil || password == nil || accout == "" || password == "" {
+func AAddAdmin(accout string, password string) (bool, string) {
+	/*	accout := json["accout"]
+		password := json["password"]*/
+	if /*accout == nil || password == nil || */ accout == "" || password == "" {
 		return false, "输入为空，请重新输入"
 	}
-	_, aid := mysql.Query(db, "select * from admin where accout = ?", accout)
+	_, aid := mysql.QueryAdmin(db, "select * from admin where accout = ?", accout)
 	if aid != -1 {
 		return false, "添加失败，该帐号已存在"
 	}
@@ -50,10 +50,8 @@ func AAddAdmin(json map[string]interface{}) (bool, string) {
 	}
 }
 
-func AAddUser(json map[string]interface{}) (bool, string) {
-	accout := json["accout"]
-	password := json["password"]
-	if accout == nil || password == nil || accout == "" || password == "" {
+func AAddUser(accout string, password string) (bool, string) {
+	if accout == "" || password == "" {
 		return false, "输入为空，请重新输入"
 	}
 
@@ -71,9 +69,8 @@ func AAddUser(json map[string]interface{}) (bool, string) {
 	}
 }
 
-func ADeleteUser(json map[string]interface{}) (bool, string) {
-	accout := json["userAccout"]
-	if accout == nil || accout == "" {
+func ADeleteUser(accout string) (bool, string) {
+	if accout == "" {
 		return false, "输入为空，请重新输入"
 	}
 
@@ -91,9 +88,8 @@ func ADeleteUser(json map[string]interface{}) (bool, string) {
 	}
 }
 
-func AUpdateUserPwd(json map[string]interface{}) (bool, string, string) {
-	accout := json["userAccout"]
-	if accout == nil || accout == "" {
+func AUpdateUserPwd(accout string) (bool, string, string) {
+	if accout == "" {
 		return false, "输入为空，请重新输入", ""
 	}
 
@@ -117,10 +113,8 @@ func AUpdateUserPwd(json map[string]interface{}) (bool, string, string) {
 	}
 }
 
-func AUpdateStatus(json map[string]interface{}) (bool, string) {
-	accout := json["userAccout"]
-	status := json["status"]
-	if accout == nil || accout == "" || status == nil {
+func AUpdateStatus(accout string, status any) (bool, string) {
+	if accout == "" {
 		return false, "输入为空，请重新输入"
 	}
 
@@ -136,4 +130,8 @@ func AUpdateStatus(json map[string]interface{}) (bool, string) {
 	} else {
 		return false, "修改失败"
 	}
+}
+
+func ASelectAllOpertor() []*mysql.Opertor {
+	return mysql.QueryAllOpertor(db)
 }

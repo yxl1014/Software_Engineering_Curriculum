@@ -1,0 +1,33 @@
+@font-face {font-family: "iconfont";
+  src: url('../fonts/iconfont.eot?t=1591064549207'); /* IE9 */
+  src: url('../fonts/iconfont.eot?t=1591064549207#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAQ8AAsAAAAACNQAAAPuAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDMgqEaIQbATYCJAMUCwwABCAFhG0HUxuyB8gOJaHAwABgQAhgPHzt9zt3377PYtogiUai6HQS000SHn8lSaIESiATKtNFM43/a0v/LETEiWnFnVRsZSCszT52Ig4VPUW0ojG2Kn5KT3k96c9fTq9lCcxn33KZY/jYgFHAh9HeQFlUoEWBJZh7w9jlRV4m0GZEDrQ+cfp88JTpswJxIol68Ezo5YrSUIRGwcYMcQduStqouwfg1nt/fEHf8ARJXYG+cGNvgglGv7p392eU/4qlDgaC4axg26gwC2TitNB+ggnisxhtcpS1DJTPiiS9uv8gP5519///HyDekLLNkBvij5clogG6vANSlhOZV3cLUfFKEMHrM0Tmu79egvKa29CGgmcAf3TqKEUyHuzc1z3QNzDQo7xRCw9vv3Bkd4yKIpq2h6vag3bUeCw0tPPWpjtZ4Y0nQtW99zpR/dawsJadh86lhNZ3hm5qVlp8GrrCwlTUdv7wrkgVFUi2xX5q1/021HAyIsJ1d/PtTNUnrOF4hNrx0IWadoSHt+45ejE9oskVoW5RW1e+eMG/fJn//PmCZ8/K0UoD6Pc3Pwa2+cjbf9MT5KY+9RErtSYUSH2oFZTO0mfUFrRryEN1pQe0dYF7szOFz+fBV+d84sW8kq9fmw5fKTIDLCwqZ8Bx74JvkVpr3/7DUvu0apHfwFXjgDPKyBHmoitXGp9+LclDseNjURecTwAeLl/l+mnpmzo8tS+gG+6Qp4ebnvQUjISc9ZwrPdMRxmi6ocXYFkeZMGAri1/wHHFQ9tMF1UkhSWAp93lW+F/fqLPQYZBwzxKmq+rsqGI0k+NywkhY8IZgzZoGz7ICi4Mh+CqQ9zza/2eacb4CPLgG+H/O3GCyAagedS+hockUEfhvIAS/s669XhEw/FfxYQFefr/6Dv3/z1noriw3SRYK71cQNGzJikg31Fkqt/iSs9YcQJ7knjb8AO4+H4ZRDjYuJhSDESQthqFSjBIyZRZq7eagoViCNjMmbW/XT8aI7AVMWwsg9DgISZcnqPS4T8iU91Ab8hMaeoKBNpsRcmC78ZC8x8lYT7GJM5RykpHYBdNEvf3SuVgstOrluMij8Vh2SiGuT17vdGoStmN5iCXOIrEvpQInyMTGTQTXYauVcA6ZmLGR5hVQ6hjaq5dQdKM8I7GBtzUyTI/CTDgGpTgSI8JOcLpT3pnXz4WJClnpyRUVZXYeJnOS8HP6yNO7AWGS3N6o4lKGOxUR9UVRAp4mkBE2nInQilmNOMFxFI8zw4yoPAUdog5D9UKdhKbyvOmVthvIYzXod6hDhxjEIjfkDi1nmFLJLrI2vWRlC51YDrISkRTSXAMpyZVzBclqBQAAAA==') format('woff2'),
+  url('../fonts/iconfont.woff?t=1591064549207') format('woff'),
+  url('../fonts/iconfont.ttf?t=1591064549207') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('../fonts/iconfont.svg?t=1591064549207#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-setting:before {
+  content: "\e66f";
+}
+
+.icon-mail:before {
+  content: "\ec34";
+}
+
+.icon-user:before {
+  content: "\e606";
+}
+
+.icon-logout:before {
+  content: "\e6d4";
+}
+

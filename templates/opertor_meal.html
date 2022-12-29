@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>用户注册页面</title>
+    <link rel="stylesheet" type="text/css" href="../css/change.css">
+    <link rel="stylesheet" href="../css/UpdateStyle.css"/>
+    <link rel="stylesheet" href="../css/ss.css"/>
+    <script src="../script/list.js"></script>
+    <script type="text/javascript" src="../script/jquery.min.js" ></script>
+    <script type="text/javascript" src="../script/requet/opertor.js"></script>
+
+    <!--    <script src="script/requet/UpdateLoad.js"></script>-->
+    <link href="../css/mydiv.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/iconfont.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mydiv.css"/>
+
+    <script type="text/javascript">
+    </script>
+</head>
+
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <a href="./index.html" class="layui-hide-xs"><div class="layui-logo"><h4>管理员后台</h4></div></a>
+        <a href="javascript:;" class="layui-hide-xs"><div class="fsSwitchMenu"><i class="fa fa-outdent"></i></div></a>
+
+        <!-- 顶部菜单 -->
+        <ul class="layui-nav layui-layout-left fsTopMenu" id="fsTopMenu" lay-filter="fsTopMenu">
+            <span class="layui-nav-bar" style="width: 0px; left: 0px; opacity: 0;"></span><li class="layui-nav-item layui-this" datapid="1"><a href="javascript:;"><i class="fa fa-cog"></i></a></li></ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide-xs">
+                <a id="demoName" href="javascript:;">
+                </a>
+                <dl class="layui-nav-child layui-anim layui-anim-upbit">
+                    <dd><a href="javascript:;">基本资料</a></dd>
+                    <dd><a href="javascript:;">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-hide-xs"><a href="login.html"><i class="fa fa-sign-out"></i> 退出</a></li>
+            <span class="layui-nav-bar" style="left: 166.35px; top: 55px; width: 0px; opacity: 0;"></span></ul>
+    </div>
+</div>
+
+<div class="box">
+    <h3>Opertor_PingTai</h3>
+    <h1>         </h1>
+    <h2></h2>
+    <div class="middle">
+        <ul class="menu">
+            <li class="item">
+                <a href="operatorpage.html" class="btn"><i class="iconfont icon-logout"></i>系统首页</a>
+            </li>
+            <li class="item" id="profile">
+                <a href="opertot_look.html" class="btn"><i class="iconfont icon-user"></i>订单查看</a>
+            </li>
+            <li class="item" id="messages">
+                <a href="opertot_handle.html" class="btn"><i class="iconfont icon-mail"></i>订单分配</a>
+            </li>
+            <li class="item" id="m">
+                <a href="opertor_meal.html" class="btn"><i class="iconfont icon-mail"></i>添加菜品</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+<div class="rg_layout">
+
+    <div class="rg_left">
+        <p class="p_reg">操作员添加菜品</p>
+        <p class="p_en">change password</p>
+    </div>
+
+    <div class="rg_center">
+        <div class="re_form">
+            <form action="#" method="post" >
+                <table>
+
+                    <tr>
+                        <td class="td_left"><label>菜品类型</label></td>
+                        <td class="td_right"><input id="m_type" type="text" name="phone1"  placeholder="菜品类型"></label></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label>菜品名称</label></td>
+                        <td class="td_right"><input id="m_name" type="text" name="name"  placeholder="菜品名称"></label></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label>定价</label></td>
+                        <td class="td_right"><input id="m_sum" type="text" name="name"  placeholder="定价"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label>简介</label></td>
+                        <td class="td_right"><input id="m_intro" type="text" name="name"  placeholder="简介"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label>口味</label></td>
+                        <td class="td_right"><input id="m_taste" type="text" name="name"  placeholder="口味"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label>图片</label></td>
+                        <td class="td_right"><input id="m_img" type="file" name="name"  placeholder="图"></td>
+                    </tr>
+                    <tr>
+                        <td  colspan="2" align="center"><input type="button" id="meal_add"  value="确认"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>
+

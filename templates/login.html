@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <script type="text/javascript" src="../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../script/requet/admin.js"></script>
+    <script type="text/javascript" src="../script/requet/opertor.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="form-warp">
+
+
+        <form class="sign-in-form">
+            <h2 class="form-title">操作员</h2>
+            <input id="id" placeholder="用户名" />
+            <input id="pwd" type="password" placeholder="密码" />
+            <div id="opertor_login" class="submit-btn">立即登录</div>
+        </form>
+
+        <form class="sign-up-form">
+            <h2 class="form-title">管理员</h2>
+            <input id="rid" placeholder="用户名" />
+            <input id="rpwd" type="password" placeholder="密码" />
+            <div id="admin_login" class="submit-btn">立即登录</div>
+        </form>
+
+
+    </div>
+
+
+    <div class="desc-warp">
+        <div class="desc-warp-item sign-up-desc">
+            <div class="content">
+                <button id="sign-up-btn">管理员</button>
+            </div>
+            <img src="../image/log.svg" alt="">
+        </div>
+
+
+        <div class="desc-warp-item sign-in-desc">
+            <div class="content">
+                <button id="sign-in-btn">操作员</button>
+            </div>
+            <img src="../image/register.svg" alt="">
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../script/main.js"></script>
+</html>

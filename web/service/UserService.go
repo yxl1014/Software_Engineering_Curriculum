@@ -15,10 +15,8 @@ func GetAllMeal() []*mysql.Meal {
 	return nil
 }
 
-func UOrder(json map[string]interface{}) (bool, string) {
-	tel := json["tel"]
-	meals := json["meals"].(string)
-	if tel == nil || tel == "" || meals == "" {
+func UOrder(tel string, meals string) (bool, string) {
+	if tel == "" || meals == "" {
 		return false, "输入为空，请重新输入"
 	}
 	sum := 0.0
@@ -42,10 +40,8 @@ func UOrder(json map[string]interface{}) (bool, string) {
 	}
 }
 
-func UDelOrder(json map[string]interface{}) (bool, string) {
-	tel := json["tel"]
-	oid := json["oid"]
-	if tel == nil || tel == "" || oid == nil || oid == "" {
+func UDelOrder(tel string, oid any) (bool, string) {
+	if tel == "" || oid == nil || oid == "" {
 		return false, "输入为空，请重新输入"
 	}
 
@@ -65,10 +61,8 @@ func UDelOrder(json map[string]interface{}) (bool, string) {
 	}
 }
 
-func USelectOrder(json map[string]interface{}) (bool, string, string) {
-	tel := json["tel"]
-	oid := json["oid"]
-	if tel == nil || tel == "" || oid == nil || oid == "" {
+func USelectOrder(tel string, oid any) (bool, string, string) {
+	if tel == "" || oid == nil || oid == "" {
 		return false, "输入为空，请重新输入", ""
 	}
 
@@ -94,11 +88,8 @@ func USelectOrder(json map[string]interface{}) (bool, string, string) {
 	}
 }
 
-func USpeakOrder(json map[string]interface{}) (bool, string) {
-	tel := json["tel"]
-	oid := json["oid"]
-	msg := json["msg"]
-	if tel == nil || tel == "" || oid == nil || oid == "" {
+func USpeakOrder(tel string, oid any, msg string) (bool, string) {
+	if tel == "" || oid == nil || oid == "" {
 		return false, "输入为空，请重新输入"
 	}
 
