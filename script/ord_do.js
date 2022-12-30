@@ -33,7 +33,7 @@ $(function () {
             type: 'POST',
             data: datas,
             success: function (res) {
-                var obj = JSON.parse(res);
+                var obj = JSON.parse(JSON.stringify(res));
 
                 if (obj.status) {
                     alert(obj.msg);

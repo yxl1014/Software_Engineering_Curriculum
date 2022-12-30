@@ -3,16 +3,17 @@ package service
 import (
 	"Software_Engineering_Curriculum/mysql"
 	_ "Software_Engineering_Curriculum/mysql/demo"
-	"strings"
+	"encoding/json"
+	"fmt"
 	"time"
 )
 
 func GetAllMeal() []*mysql.Meal {
 	meals, err := mysql.QueryAllMeals(db)
 	if err != nil {
-		return meals
+		return nil
 	}
-	return nil
+	return meals
 }
 
 func UOrder(tel string, meals string) (bool, string) {
@@ -20,15 +21,21 @@ func UOrder(tel string, meals string) (bool, string) {
 		return false, "输入为空，请重新输入"
 	}
 	sum := 0.0
-	split := strings.Split(meals, "_")
-	for s := range split {
-		var m *mysql.Meal = mysql.QueryOneMeal(db, s)
+	map2 := make(map[string]int)
+	err := json.Unmarshal([]byte(meals), &map2)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	for k, v := range map2 {
+		var m *mysql.Meal = mysql.QueryOneMeal(db, k)
 		if m == nil {
 			return false, "菜品不存在"
 		}
-		sum += m.Sum
+		sum += float64(v) * m.Sum
 	}
 	currentTime := time.Now()
+	println(currentTime.String())
 
 	ok := mysql.InsertAndDelete(db, "insert into ordfrom(car_tel,timestamp,meals,sum) values(?,?,?,?)",
 		tel, currentTime.String(), meals, sum)

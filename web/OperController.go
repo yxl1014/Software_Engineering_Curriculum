@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func operLogin(c *gin.Context) {
@@ -19,8 +20,8 @@ func operLogin(c *gin.Context) {
 }
 
 func giveOrder(c *gin.Context) {
-	deltel := c.PostForm("deltel")
-	oid := c.PostForm("oid")
+	deltel := c.PostForm("tel")
+	oid, _ := strconv.Atoi(c.PostForm("oid"))
 	o, status, msg := service.OGiveOrder(deltel, oid)
 	c.JSON(http.StatusOK, gin.H{
 		"order":  o,
@@ -31,7 +32,7 @@ func giveOrder(c *gin.Context) {
 
 func updateOrder(c *gin.Context) {
 	status := c.PostForm("status")
-	oid := c.PostForm("oid")
+	oid, _ := strconv.Atoi(c.PostForm("oid"))
 	statuss, msg := service.OUpdateOrder(status, oid)
 	c.JSON(http.StatusOK, gin.H{
 		"status": statuss,

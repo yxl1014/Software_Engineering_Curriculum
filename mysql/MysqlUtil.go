@@ -27,9 +27,9 @@ type Opertor struct {
 type OrdFrom struct {
 	Var1  int
 	Var2  string
-	Var3  string
+	Var3  sql.NullString
 	Var4  int
-	Var5  string
+	Var5  sql.NullString
 	Var6  int
 	Var7  int
 	Var8  string
@@ -50,6 +50,10 @@ func InsertAndDelete(db *sql.DB, sql string, args ...any) bool {
 		return false
 	}
 	res, err := stmt.Exec(args...)
+	if err != nil {
+		panic(err)
+		return false
+	}
 	id, err := res.LastInsertId()
 	if err != nil {
 		panic(err)
@@ -93,15 +97,15 @@ func QueryAdmin(db *sql.DB, sql string, args ...any) (bool, int) {
 }
 
 // Query 查询一条记录
-func QueryOrdFrom(db *sql.DB, sql string, args ...any) (bool, *OrdFrom) {
+func QueryOrdFrom(db *sql.DB, sql1 string, args ...any) (bool, *OrdFrom) {
 	// 执行
-	row := db.QueryRow(sql, args...)
+	row := db.QueryRow(sql1, args...)
 	// 声明变量接受扫描出来的数据
 	var var1 int
 	var var2 string
-	var var3 string
+	var var3 sql.NullString
 	var var4 int
-	var var5 string
+	var var5 sql.NullString
 	var var6 int
 	var var7 int
 	var var8 string
@@ -218,13 +222,9 @@ func QueryAllMeals(db *sql.DB) ([]*Meal, error) {
 }
 
 // QueryAll 查询全部记录
-func QueryOneMeal(db *sql.DB, id int) *Meal {
-	sql := "select * from meal where mid = ?"
-	rows, err := db.Query(sql, id)
-	if err != nil {
-		fmt.Println("执行sql语句失败: ", err)
-		return nil
-	}
+func QueryOneMeal(db *sql.DB, n string) *Meal {
+	sql := "select * from meal where name = ?"
+	rows := db.QueryRow(sql, n)
 
 	var mid int
 	var Type string
@@ -233,7 +233,7 @@ func QueryOneMeal(db *sql.DB, id int) *Meal {
 	var intro string
 	var teste string
 	var img string
-	err = rows.Scan(&mid, &Type, &name, &sum, &intro, &teste, &img)
+	err := rows.Scan(&mid, &Type, &name, &sum, &intro, &teste, &img)
 	if err != nil {
 		return nil
 	}
@@ -252,41 +252,48 @@ func QueryOneMeal(db *sql.DB, id int) *Meal {
 }
 
 // QueryAll 查询全部记录
-func QueryAllMeal(db *sql.DB) []*Meal {
-	sql := "select * from meal"
-	rows, err := db.Query(sql)
+func QueryAllOrdFrom(db *sql.DB) []*OrdFrom {
+	sql1 := "select * from ordfrom"
+	rows, err := db.Query(sql1)
 	if err != nil {
 		fmt.Println("执行sql语句失败: ", err)
 		return nil
 	}
 	// 创建User 切片
-	var meals []*Meal
+	var ordfroms []*OrdFrom
 	for rows.Next() {
-		var mid int
-		var Type string
-		var name string
-		var sum float64
-		var intro string
-		var teste string
-		var img string
-		err = rows.Scan(&mid, &Type, &name, &sum, &intro, &teste, &img)
+		var var1 int
+		var var2 string
+		var var3 sql.NullString
+		var var4 int
+		var var5 sql.NullString
+		var var6 int
+		var var7 int
+		var var8 string
+		var var9 string
+		var var10 float64
+		err := rows.Scan(&var1, &var2, &var3, &var4, &var5, &var6, &var7, &var8, &var9, &var10)
 		if err != nil {
+			fmt.Println("查询失败:", err)
 			return nil
 		}
 
-		m := &Meal{
-			Mid:   mid,
-			Type:  Type,
-			Name:  name,
-			Sum:   sum,
-			Intro: intro,
-			Teste: teste,
-			Img:   img,
+		o := &OrdFrom{
+			Var1:  var1,
+			Var2:  var2,
+			Var3:  var3,
+			Var4:  var4,
+			Var5:  var5,
+			Var6:  var6,
+			Var7:  var7,
+			Var8:  var8,
+			Var9:  var9,
+			Var10: var10,
 		}
-		meals = append(meals, m)
+		ordfroms = append(ordfroms, o)
 	}
 
-	return meals
+	return ordfroms
 }
 
 // QueryAll 查询全部记录

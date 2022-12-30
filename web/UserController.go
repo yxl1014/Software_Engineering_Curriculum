@@ -13,7 +13,7 @@ func getAllMeal(c *gin.Context) {
 }
 
 func order(c *gin.Context) {
-	tel := c.PostForm("tel")
+	tel := c.PostForm("car_tel")
 	meals := c.PostForm("meals")
 	status, msg := service.UOrder(tel, meals)
 	c.JSON(http.StatusOK, gin.H{

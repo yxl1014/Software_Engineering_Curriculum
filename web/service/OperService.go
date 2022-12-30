@@ -21,38 +21,38 @@ func OLogin(accout string, password string) (int, bool, string) {
 	}
 }
 
-func OGiveOrder(deltel any, oid any) (*mysql.OrdFrom, bool, string) {
-	if deltel == nil || oid == nil || deltel == "" || oid == "" {
+func OGiveOrder(deltel string, oid int) (*mysql.OrdFrom, bool, string) {
+	if deltel == "" {
 		return nil, false, "输入为空，请重新输入"
 	}
-	_, o := mysql.QueryOrdFrom(db, "select * from ordfrom where oid = ?", oid)
+	_, o := mysql.QueryOrdFrom(db, "select * from ordfrom where order_num = ?", oid)
 	if o == nil {
 		return nil, false, "该订单不存在"
 	}
 	if o.Var4 != 0 {
 		return nil, false, "该订单当前不处于待分配状态"
 	}
-	ok := mysql.InsertAndDelete(db, "update ordfrom set del_tel = ? where oid = ?", deltel, oid)
+	ok := mysql.InsertAndDelete(db, "update ordfrom set del_tel = ? and status=1 where order_num = ?", deltel, oid)
 	if ok {
-		_, oo := mysql.QueryOrdFrom(db, "select * from ordfrom where oid = ?", oid)
+		_, oo := mysql.QueryOrdFrom(db, "select * from ordfrom where order_num = ?", oid)
 		return oo, true, "分配成功"
 	} else {
 		return nil, false, "分配失败"
 	}
 }
 
-func OUpdateOrder(status any, oid any) (bool, string) {
-	if status == nil || oid == nil || status == "" || oid == "" {
+func OUpdateOrder(status any, oid int) (bool, string) {
+	if status == nil || status == "" {
 		return false, "输入为空，请重新输入"
 	}
-	_, o := mysql.QueryOrdFrom(db, "select * from ordfrom where oid = ?", oid)
+	_, o := mysql.QueryOrdFrom(db, "select * from ordfrom where order_num = ?", oid)
 	if o == nil {
 		return false, "该订单不存在"
 	}
 	if o.Var4 != 1 && o.Var4 != 0 {
 		return false, "该订单当前不处于可更改状态"
 	}
-	ok := mysql.InsertAndDelete(db, "update ordfrom set status = ? where oid = ?", status, oid)
+	ok := mysql.InsertAndDelete(db, "update ordfrom set status = ? where order_num = ?", status, oid)
 	if ok {
 		return true, "修改成功"
 	} else {
@@ -74,6 +74,6 @@ func OAddMeal(var1 any, var2 any, var3 any, var4 any, var5 any, var6 any) (bool,
 		return false, "添加失败"
 	}
 }
-func SelectAllOrder() []*mysql.Meal {
-	return GetAllMeal()
+func SelectAllOrder() []*mysql.OrdFrom {
+	return mysql.QueryAllOrdFrom(db)
 }

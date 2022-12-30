@@ -25,22 +25,20 @@ window.onload = function ()
         xhrFields: {
             withCredentials: true //允许跨域带Cookie
         },
-        success: function (result) {
-
+        success: function (res) {
+            console.log(res)
+            var obj = JSON.parse(JSON.stringify(res))
             // $("#message").html(result);
-            var result2=eval("("+result+")");
-            console.error(result2);
-            // $("#message").html(result);
-            for (var i = 0; i < result2.length; i++) {
-                var trTemp = $("<tr id='tr" + result2[i].order_num+ "'></tr>");
-                trTemp.append("<td>" + result2[i].order_num+ "</td>");
-                trTemp.append("<td>" + result2[i].car_tel+ "</td>");
-                trTemp.append("<td>" + result2[i].del_tel+ "</td>");
-                trTemp.append("<td>" + status(result2[i].status) + "</td>");
-                trTemp.append("<td>" + result2[i].timestamp + "</td>");
-                trTemp.append("<td>" + result2[i].sum + "</td>");
+            for (var i = 0; i < obj.orders.length; i++) {
+                var trTemp = $("<tr id='tr" + obj.orders[i].Var1+ "'></tr>");
+                trTemp.append("<td>" + obj.orders[i].Var1+ "</td>");
+                trTemp.append("<td>" + obj.orders[i].Var2+ "</td>");
+                trTemp.append("<td>" + obj.orders[i].Var3.String+ "</td>");
+                trTemp.append("<td>" + status(obj.orders[i].Var4) + "</td>");
+                trTemp.append("<td>" + obj.orders[i].Var8 + "</td>");
+                trTemp.append("<td>" + obj.orders[i].Var10 + "</td>");
                 trTemp.append("</tr>");
-                console.log(result2[i].timestemp)
+                console.log(obj.orders[i].Var8)
                 trTemp.appendTo("#in_table");
             }
         },

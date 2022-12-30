@@ -33,7 +33,7 @@ func LoginController() {
 	userGroup := r.Group("/user")
 	{
 		userGroup.POST("/getAllMeal", getAllMeal)
-		userGroup.POST("/order", order)
+		userGroup.POST("/addOrd", order)
 		userGroup.POST("/delOrder", delOrder)
 		userGroup.POST("/selectOrder", selectOrder)
 		userGroup.POST("/speakOrder", speakOrder)
@@ -42,7 +42,7 @@ func LoginController() {
 	operGroup := r.Group("/opertor")
 	{
 		operGroup.POST("/login", operLogin)
-		operGroup.POST("/giveOrder", giveOrder)
+		operGroup.POST("/updateDelTel", giveOrder)
 		operGroup.POST("/updateOrder", updateOrder)
 		operGroup.POST("/selectOrderByTel", selectOrderByTel)
 		operGroup.POST("/selectOrderById", selectOrderById)
